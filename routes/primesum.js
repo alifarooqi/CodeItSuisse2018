@@ -51,6 +51,46 @@ router.post('/', function (req, res, next) {
     primeArray = [],
     outputArray = [];
     console.log(input);
+    var temp;
+    var flag = 0;
+    var total = integer;
+    for(var i= integer ; i>=0 ; i--)
+    {   if(flag===0)
+        {temp = i; flag=1;}
+        if(total===0)
+        {
+            console.log(outputArray);
+            res.end(JSON.stringify(outputArray));
+            break;
+        }
+        else if(total<0)
+        {
+            i = temp-1;
+            i++;
+            flag=0;
+            total = integer;
+        }
+        else if(i<2)
+        {
+            i = temp-1;
+            i++;
+            flag=0;
+            total=integer;
+        }
+       
+        else{
+        if(isPrime(i))
+        {   
+            
+            total-= i;
+            
+            outputArray.push(i);
+            console.log(total);
+            i=total;
+            i++;
+        }
+        }
+    }
 
 
     for(var i=2 ; i<=integer ; i++){
@@ -61,6 +101,8 @@ router.post('/', function (req, res, next) {
         }
     }
   
+
+
 
 
    /*var total = integer;
@@ -103,7 +145,10 @@ router.post('/', function (req, res, next) {
 */
 
 
-
+  /* if(isPrime(integer))
+   {
+       console.log("YESSSSS");
+   }
 
     if(isPrime(integer))
     {
@@ -166,7 +211,7 @@ router.post('/', function (req, res, next) {
 
    } 
    
-}
+}*/
 
 });
 
