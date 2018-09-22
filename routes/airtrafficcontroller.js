@@ -47,7 +47,18 @@ router.post('/', function (req, res, next) {
         let tmpOutput = {
             PlaneId: flight.PlaneId
         }
-        const currentRunway = (idx)%runwayCount;
+        let currentRunway;
+        let minRunway = 99999;
+        for (var i=0; i<runwayCount; i++){
+            if(flight.timeInMins > reservedUntil[i]){
+                currentRunway = i;
+                break;
+            }
+            else if(reservedUntil[i] < minRunway){
+                currentRunway = i;
+                minRunway = reservedUntil[i];
+            }
+        }
         if(flight.timeInMins > reservedUntil[currentRunway]){
             tmpOutput.Time = flight.Time;
             reservedUntil[currentRunway] = flight.timeInMins + reserveTime;
