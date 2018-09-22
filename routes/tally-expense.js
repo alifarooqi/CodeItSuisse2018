@@ -4,7 +4,7 @@ var router = Router();
 
 router.post('/', function (req, res, next) {
     var input = req.body;
-    console.log(input.stringify())
+    console.log(JSON.stringify(input))
     let balance = {}
     input.persons.forEach(person =>{
         balance[person] = 0;
