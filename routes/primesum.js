@@ -6,25 +6,25 @@ var router = Router();
 
 const isPrime = num => {
         
-    if(n<=1)
+    if(num<=1)
     {
         return false;
     }
 
-    else if(n<=3)
+    else if(num<=3)
     {
         return true;
     }
 
-    else if(n%2===0 || n%3===0)
+    else if(num%2===0 || num%3===0)
     {
         return false;
     }
 
     let i = 5;
-    while(i*i<=n)
+    while(i*i<=num)
     {
-        if(n%i===0 || n%(i+2)===0 )
+        if(num%i===0 || num%(i+2)===0 )
         {
             return false;
         }
