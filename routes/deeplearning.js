@@ -25,6 +25,7 @@ router.post('/question-1', function (req, res, next) {
     var jsonans = {
         "answer" : finalans
     }
+    console.log(JSON.stringify(jsonans));
     res.send(JSON.stringify(jsonans));
 });
 
