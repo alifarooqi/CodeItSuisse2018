@@ -45,7 +45,7 @@ router.post('/', function (req, res, next) {
     
     var integer = parseInt(input),
     primeArray = [],
-    outputArray = [],
+    outputArray = [];
 
 
     for(var i=2 ; i<=integer ; i++){
