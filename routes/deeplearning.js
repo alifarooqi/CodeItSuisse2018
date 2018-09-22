@@ -6,7 +6,7 @@ var math = require('mathjs');
 var router = Router();
 
 
-router.post('/', function (req, res, next) {
+router.post('/question-1', function (req, res, next) {
     var input = req.body.input;
     var output = req.body.output;
     var question = req.body.question;

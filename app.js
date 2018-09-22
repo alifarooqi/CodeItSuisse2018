@@ -34,7 +34,7 @@ app.use('/square', square)
 app.use('/imagesGPS', imagesGPS)
 app.use('/prime-sum',primeSum)
 app.use('/airtrafficcontroller',airtrafficcontroller)
-app.use('/deeplearning',deeplearning)
+app.use('/machine-learning',deeplearning)
 
 // catch 404 and forward to error handler`
 app.use(function (req, res, next) {
