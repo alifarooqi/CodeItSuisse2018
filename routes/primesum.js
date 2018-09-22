@@ -28,19 +28,14 @@ router.post('/', function (req, res, next) {
         }
     }
 
+    if(isPrime(integer))
+    {
+        outputArray.push(integer);
+        res.end( res.end(JSON.stringify(outputArray)));
+    }
 
-    
-    
-
-
-    
-
-    
-    
-
-
-
-  findArray(integer,(primeArray.length)-1);
+    else
+ { findArray(integer,(primeArray.length)-1);
    
 
    function findArray(total, index)
@@ -77,6 +72,8 @@ router.post('/', function (req, res, next) {
 
 
    } 
+
+}
 
    
 
