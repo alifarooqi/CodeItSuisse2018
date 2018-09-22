@@ -11,6 +11,7 @@ var imagesGPS = require('./routes/imagesGPS').default;
 var primeSum = require('./routes/primesum').default;
 var airtrafficcontroller = require('./routes/airtrafficcontroller').default;
 var deeplearning = require('./routes/deeplearning').default;
+var customersAndHotel = require('./routes/customerandhotel').default;
 
 var index = require('./routes/index');
 var users = require('./routes/users');
@@ -35,6 +36,7 @@ app.use('/imagesGPS', imagesGPS)
 app.use('/prime-sum',primeSum)
 app.use('/airtrafficcontroller',airtrafficcontroller)
 app.use('/machine-learning',deeplearning)
+app.use('/customers-and-hotel',customersAndHotel)
 
 // catch 404 and forward to error handler`
 app.use(function (req, res, next) {
