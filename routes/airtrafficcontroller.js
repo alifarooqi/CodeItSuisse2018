@@ -60,7 +60,7 @@ router.post('/', function (req, res, next) {
         output.push(tmpOutput)
     })
     var totalTime = new Date() - startTime;
-    console.log("Time:", totalTime)
+    console.log("Time:", totalTime + "s")
     console.log({
         "Flights": output
     })
