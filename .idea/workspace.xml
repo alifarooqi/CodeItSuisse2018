@@ -33,12 +33,12 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="js" value="2107" />
+          <entry key="js" value="2173" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JavaScript" value="2107" />
+          <entry key="JavaScript" value="2173" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.js.language.service.starts" />
@@ -62,8 +62,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/routes/airtrafficcontroller.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="324">
-              <caret line="62" column="39" selection-start-line="62" selection-start-column="39" selection-end-line="62" selection-end-column="39" />
+            <state relative-caret-position="273">
+              <caret line="45" column="36" selection-start-line="45" selection-start-column="36" selection-end-line="45" selection-end-column="36" />
               <folding>
                 <element signature="e#896#925#0" />
               </folding>
@@ -83,8 +83,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tmp/runner.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="51">
-              <caret line="3" column="20" selection-start-line="3" selection-start-column="13" selection-end-line="3" selection-end-column="20" />
+            <state relative-caret-position="238">
+              <caret line="14" column="1" selection-start-line="14" selection-start-column="1" selection-end-line="14" selection-end-column="1" />
               <folding>
                 <element signature="e#534#542#0" />
               </folding>
@@ -118,6 +118,7 @@
       <find>flights.</find>
       <find>json</find>
       <find>console</find>
+      <find>'</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -128,8 +129,8 @@
       <list>
         <option value="$PROJECT_DIR$/routes/test.js" />
         <option value="$PROJECT_DIR$/routes/imagesGPS.js" />
-        <option value="$PROJECT_DIR$/tmp/runner.js" />
         <option value="$PROJECT_DIR$/app.js" />
+        <option value="$PROJECT_DIR$/tmp/runner.js" />
         <option value="$PROJECT_DIR$/routes/airtrafficcontroller.js" />
       </list>
     </option>
@@ -275,12 +276,12 @@
       <option name="presentableId" value="Default" />
       <updated>1525531409867</updated>
       <workItem from="1537580927596" duration="10808000" />
-      <workItem from="1537595078641" duration="10526000" />
+      <workItem from="1537595078641" duration="12822000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="21334000" />
+    <option name="totallyTimeSpent" value="23630000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -378,8 +379,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/tmp/runner.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="20" selection-start-line="3" selection-start-column="13" selection-end-line="3" selection-end-column="20" />
+        <state relative-caret-position="238">
+          <caret line="14" column="1" selection-start-line="14" selection-start-column="1" selection-end-line="14" selection-end-column="1" />
           <folding>
             <element signature="e#534#542#0" />
           </folding>
@@ -388,8 +389,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/airtrafficcontroller.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="324">
-          <caret line="62" column="39" selection-start-line="62" selection-start-column="39" selection-end-line="62" selection-end-column="39" />
+        <state relative-caret-position="273">
+          <caret line="45" column="36" selection-start-line="45" selection-start-column="36" selection-end-line="45" selection-end-column="36" />
           <folding>
             <element signature="e#896#925#0" />
           </folding>
