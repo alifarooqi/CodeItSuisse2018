@@ -1,7 +1,6 @@
 import { Router } from "express";
 import axios from 'axios'
 var router = Router();
-// var radixSortLSD = require("./fasterSort").default
 
 router.post('/minimum-distance', function (req, res, next) {
     var input = req.body;
