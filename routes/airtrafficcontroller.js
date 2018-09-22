@@ -32,6 +32,10 @@ router.post('/', function (req, res, next) {
                 return a.PlaneId > b.PlaneId
                 }
     })
+    let runways;
+    if(req.body.Static.Runways){
+        runways = req.body.Static.Runways.sort()
+    }
 
     let reservedUntil = []
 
@@ -43,7 +47,7 @@ router.post('/', function (req, res, next) {
         let tmpOutput = {
             PlaneId: flight.PlaneId
         }
-        const currentRunway = (idx+1)%runwayCount;
+        const currentRunway = (idx)%runwayCount;
         if(flight.timeInMins > reservedUntil[currentRunway]){
             tmpOutput.Time = flight.Time;
             reservedUntil[currentRunway] = flight.timeInMins + reserveTime;
@@ -55,7 +59,7 @@ router.post('/', function (req, res, next) {
             reservedUntil[currentRunway] += reserveTime
         }
         if(req.body.Static.Runways){
-            tmpOutput.Runway = req.body.Static.Runways[currentRunway]
+            tmpOutput.Runway = runways[currentRunway]
         }
         output.push(tmpOutput)
     })
