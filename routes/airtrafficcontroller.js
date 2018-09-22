@@ -1,0 +1,56 @@
+import { Router } from "express";
+var router = Router();
+
+router.post('/', function (req, res, next) {
+    var flights = req.body['Flights'];
+    const reserveTime = parseInt(req.body.Static.ReserveTime)/60;
+    const runwayCount = req.body.Static.Runways ? req.body.Static.Runways.length : 1;
+
+    flights.sort((a,b)=>{
+        a.timeInMins = parseInt(a.Time.substr(0,2))*60 + parseInt(a.Time.substr(2,2))
+        b.timeInMins = parseInt(b.Time.substr(0,2))*60 + parseInt(b.Time.substr(2,2))
+
+        if (a.timeInMins > b.timeInMins) {
+            if(a.Distressed == "true" && (a.timeInMins-b.timeInMins) < (reserveTime))
+                return -1;
+            else
+                return 1
+        } else{
+            if(b.Distressed == "true" && (b.timeInMins-a.timeInMins) < (reserveTime))
+                return 1;
+            else
+                return -1
+        }
+    })
+
+    let reservedUntil = []
+
+    for (var i=0; i<runwayCount; i++){
+        reservedUntil[i] = 0;
+    }
+    let output = []
+    flights.forEach((flight, idx)=>{
+        let tmpOutput = {
+            PlaneId: flight.PlaneId
+        }
+        const currentRunway = (idx)%runwayCount;
+        if(flight.timeInMins > reservedUntil[currentRunway]){
+            tmpOutput.Time = flight.Time;
+            reservedUntil[currentRunway] = flight.timeInMins + reserveTime;
+        }
+        else {
+            const MM = ("0"+reservedUntil[currentRunway] % 60).slice(-2);
+            const HH = ("0"+parseInt(reservedUntil[currentRunway]/60)).slice(-2);
+            tmpOutput.Time = HH + MM;
+            reservedUntil[currentRunway] += reserveTime
+        }
+        if(req.body.Static.Runways){
+            tmpOutput.Runway = req.body.Static.Runways[currentRunway]
+        }
+        output.push(tmpOutput)
+    })
+    res.send(JSON.stringify(output));
+});
+
+
+export default router;
