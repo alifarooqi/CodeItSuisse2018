@@ -1,6 +1,7 @@
 import { Router } from "express";
 import axios from 'axios'
 import { isPrimitive } from "util";
+import { exists } from "fs";
 var router = Router();
 
 const isPrime = num => {
@@ -15,7 +16,8 @@ router.post('/', function (req, res, next) {
     
     var integer = parseInt(input),
     primeArray = [],
-    outputArray = []
+    outputArray = [],
+    outputArrayList = []
 
     for(var i=2 ; i<=integer ; i++){
         
@@ -29,7 +31,8 @@ router.post('/', function (req, res, next) {
    {
        if(total===0)
        {
-           res.send(JSON.stringify(outputArray));
+           
+           outputArrayList.push(outputArray)
            return;
        }
 
@@ -61,7 +64,7 @@ router.post('/', function (req, res, next) {
    }
 
     findArray(integer,(primeArray.length)-1);
-   
+    res.send(JSON.stringify(outputArrayList[0]));
 
 
    
