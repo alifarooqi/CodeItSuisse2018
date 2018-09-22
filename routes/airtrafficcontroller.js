@@ -2,7 +2,7 @@ import { Router } from "express";
 var router = Router();
 
 router.post('/', function (req, res, next) {
-    var start = new Date()
+    var startTime = new Date();
     var flights = req.body['Flights'];
     console.log("Testcase length:", flights.length)
     const reserveTime = parseInt(req.body.Static.ReserveTime)/60;
@@ -59,7 +59,8 @@ router.post('/', function (req, res, next) {
         }
         output.push(tmpOutput)
     })
-    console.log("Time:", new Date - start)
+    var totalTime = new Date() - startTime;
+    console.log("Time:", totalTime)
     res.send(JSON.stringify({
         "Flights": output
     }));
