@@ -57,7 +57,9 @@ router.post('/', function (req, res, next) {
         }
         output.push(tmpOutput)
     })
-    res.send(JSON.stringify(output));
+    res.send(JSON.stringify({
+        "Flights": output
+    }));
 });
 
 
