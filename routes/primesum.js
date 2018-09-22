@@ -43,6 +43,8 @@ router.post('/', function (req, res, next) {
     var input = req.body['input'];
     var stopfindArray = false;
 
+
+
     
     var integer = parseInt(input),
     
@@ -103,8 +105,14 @@ router.post('/', function (req, res, next) {
 
 
 
-    
+    if(isPrime(integer))
+    {
+        outputArray.push(integer);
+        res.end(JSON.stringify(outputArray));
 
+    }
+    
+    else{
     findArray(integer,(primeArray.length)-1);
    
 
@@ -158,6 +166,7 @@ router.post('/', function (req, res, next) {
 
    } 
    
+}
 
 });
 
