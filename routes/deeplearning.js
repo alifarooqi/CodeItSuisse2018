@@ -23,10 +23,10 @@ router.post('/question-1', function (req, res, next) {
     var ans = math.multiply(ainv,bsquare);
     var finalans = question[0]*ans[0] + question[1]*ans[1] + question[2]*ans[2];
     var jsonans = {
-        "answer" : finalans
+        "answer" :  finalans
     }
     console.log(JSON.stringify(jsonans));
-    res.send(JSON.stringify(jsonans));
+    res.send(jsonans);
 });
 
 
