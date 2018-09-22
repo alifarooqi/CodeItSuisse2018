@@ -5,15 +5,6 @@ var url = require('url');
 var ExifImage = require('exif').ExifImage;
 import each from 'async/each';
 
-
-function fullUrl(req) {
-    return url.format({
-        protocol: req.protocol,
-        host: req.get('host'),
-        pathname: req.originalUrl
-    });
-}
-
 function findLatitude (coordinates, direction){
     var hour = coordinates[0] || 0;
     var min = coordinates[1] || 0;
@@ -33,13 +24,14 @@ function findLongitude (coordinates, direction){
 }
 
 router.post('/', function (req, res, next) {
-    var hostUrl = fullUrl(req)
+    let hostUrl = url.parse(req.url, true);
+    console.log(hostUrl)
     var images = req.body;
     var output = []
 
     each(images, function(img, callback) {
         try {
-            new ExifImage({ image : img.path }, function (error, exifData) {
+            new ExifImage({ image : "http://cis2018-coordinator-hk.herokuapp.com" + img.path }, function (error, exifData) {
                 if (error) {
                     console.log('Error: ' + error.message);
                     callback(error.message)
@@ -57,6 +49,7 @@ router.post('/', function (req, res, next) {
             });
         } catch (error) {
             console.log('Error: ' + error.message);
+            res.send("Error!")
         }
 
     }, function(err) {
