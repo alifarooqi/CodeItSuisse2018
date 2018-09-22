@@ -5,19 +5,50 @@ import { exists } from "fs";
 var router = Router();
 
 const isPrime = num => {
-    for(let i = 2; i < num; i++)
-      if(num % i === 0) return false;
-    return num !== 1 && num !== 0;
+        
+    if(num<=1)
+    {
+        return false;
+    }
+
+    else if(num<=3)
+    {
+        return true;
+    }
+
+    else if(num%2===0 || num%3===0)
+    {
+        return false;
+    }
+
+    let i = 5;
+    while(i*i<=num)
+    {
+        if(num%i===0 || num%(i+2)===0 )
+        {
+            return false;
+        }
+
+        i=i+6;
+    }
+
+    return true;
+
+
+
   }
 
 router.post('/', function (req, res, next) {
 
     var input = req.body['input'];
+
     
     var integer = parseInt(input),
+    
     primeArray = [],
-    outputArray = [],
-    outputArrayList = []
+    outputArray = [];
+    console.log(input);
+
 
     for(var i=2 ; i<=integer ; i++){
         
@@ -28,15 +59,21 @@ router.post('/', function (req, res, next) {
     }
 
 
-  findArray(integer,(primeArray.length)-1);
+
+
+
+    
+
+   findArray(integer,(primeArray.length)-1);
    
 
-   function findArray(total, index)
+
+  function findArray(total, index)
    {
        if(total===0)
        {
            res.end(JSON.stringify(outputArray));
-           return outputArray;
+           return;
        }
 
        else if(total<0)
@@ -64,9 +101,15 @@ router.post('/', function (req, res, next) {
        }
 
 
-   }
+   } 
+   
+
+
+
+
 
    
+
 
 
 
