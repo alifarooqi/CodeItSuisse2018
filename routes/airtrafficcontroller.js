@@ -2,6 +2,7 @@ import { Router } from "express";
 var router = Router();
 
 router.post('/', function (req, res, next) {
+    console.log("Starting testcase")
     var flights = req.body['Flights'];
     const reserveTime = parseInt(req.body.Static.ReserveTime)/60;
     const runwayCount = req.body.Static.Runways ? req.body.Static.Runways.length : 1;
