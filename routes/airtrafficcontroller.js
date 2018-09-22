@@ -15,12 +15,20 @@ router.post('/', function (req, res, next) {
                 return -1;
             else
                 return 1
-        } else{
+        } else if(a.timeInMins < b.timeInMins){
             if(b.Distressed == "true" && (b.timeInMins-a.timeInMins) < (reserveTime))
                 return 1;
             else
                 return -1
         }
+        else{
+            if(a.Distressed == "true" && b.Distressed != "true")
+                return -1
+            else if(b.Distressed == "true" && a.Distressed != "true")
+                return 1
+            else
+                return a.PlaneId > b.PlaneId
+                }
     })
 
     let reservedUntil = []
