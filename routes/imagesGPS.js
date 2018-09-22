@@ -1,7 +1,5 @@
 import { Router } from "express";
-import axios from 'axios'
 var router = Router();
-var url = require('url');
 var ExifImage = require('exif').ExifImage;
 import each from 'async/each';
 var request = require('request').defaults({ encoding: null });
@@ -25,17 +23,16 @@ function findLongitude (coordinates, direction){
 }
 
 router.post('/', function (req, res, next) {
-    let hostUrl = url.parse(req.url, true);
     var images = req.body;
     var output = []
 
     each(images, function(img, callback) {
         request.get(img.path, function (err, response, responseBuffer) {
-            console.log("Is buffer:", Buffer.isBuffer(responseBuffer))
             try {
                 new ExifImage({ image : responseBuffer }, function (error, exifData) {
                     if (error) {
                         console.log('Error: ' + error.message);
+                        console.log(img.path);
                         callback(error.message)
                     }
                     else {
@@ -51,7 +48,7 @@ router.post('/', function (req, res, next) {
                 });
             } catch (error) {
                 console.log('Error: ' + error.message);
-                res.send("Error!")
+                res.end("Error!\n" + error.message)
             }
         });
 
@@ -62,14 +59,14 @@ router.post('/', function (req, res, next) {
         if( err ) {
             // One of the iterations produced an error.
             // All processing will now stop.
-            console.log('A file failed to process');
-            res.send("Error!")
+            console.log('An image failed to process');
+            res.end("Error: An image failed to process!\n")
         } else {
             console.log('All files have been processed successfully');
             images.forEach((img, i)=>{
                 output[i] = img.location
             })
-            res.send(JSON.stringify(output));
+            res.end(JSON.stringify(output));
         }
     });
 });
