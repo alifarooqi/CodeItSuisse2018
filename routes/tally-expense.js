@@ -4,7 +4,7 @@ var router = Router();
 
 router.post('/', function (req, res, next) {
     var input = req.body;
-
+    console.log(input)
     let balance = {}
     input.persons.forEach(person =>{
         balance[person] = 0;
@@ -19,6 +19,7 @@ router.post('/', function (req, res, next) {
             expense.exclude = []
         }
         var cost = Math.round(expense.amount/sharedAmoung*100)/100
+        console.log(cost)
         balance[expense.paidBy] += expense.amount
         input.persons.forEach(person =>{
             if(!expense.exclude.includes(person)){
