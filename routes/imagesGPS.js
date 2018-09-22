@@ -30,7 +30,7 @@ router.post('/', function (req, res, next) {
 
     each(images, function(img, callback) {
         try {
-            new ExifImage({ image : "https://seg-fault.herokuapp.com/imagesGPS" + img.path }, function (error, exifData) {
+            new ExifImage({ image : img.path }, function (error, exifData) {
                 if (error) {
                     console.log('Error: ' + error.message);
                     callback(error.message)
