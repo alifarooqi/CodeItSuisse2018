@@ -4,6 +4,7 @@ var router = Router();
 var url = require('url');
 var ExifImage = require('exif').ExifImage;
 import each from 'async/each';
+var request = require('request').defaults({ encoding: null });
 
 function findLatitude (coordinates, direction){
     var hour = coordinates[0] || 0;
@@ -29,27 +30,32 @@ router.post('/', function (req, res, next) {
     var output = []
 
     each(images, function(img, callback) {
-        try {
-            new ExifImage({ image : img.path }, function (error, exifData) {
-                if (error) {
-                    console.log('Error: ' + error.message);
-                    callback(error.message)
-                }
-                else {
-                    var lat = findLatitude(exifData.gps["GPSLatitude"], exifData.gps["GPSLatitudeRef"]);
-                    var lon = findLongitude(exifData.gps["GPSLongitude"], exifData.gps["GPSLongitudeRef"]);
-                    console.log(lat, lon); // Do something with your data!
-                    img.location = {
-                        lat: lat,
-                        long: lon
+        request.get(img.path, function (err, response, responseBuffer) {
+            console.log("Is buffer:", Buffer.isBuffer(responseBuffer))
+            try {
+                new ExifImage({ image : responseBuffer }, function (error, exifData) {
+                    if (error) {
+                        console.log('Error: ' + error.message);
+                        callback(error.message)
                     }
-                    callback();
-                }
-            });
-        } catch (error) {
-            console.log('Error: ' + error.message);
-            res.send("Error!")
-        }
+                    else {
+                        var lat = findLatitude(exifData.gps["GPSLatitude"], exifData.gps["GPSLatitudeRef"]);
+                        var lon = findLongitude(exifData.gps["GPSLongitude"], exifData.gps["GPSLongitudeRef"]);
+                        console.log(lat, lon); // Do something with your data!
+                        img.location = {
+                            lat: lat,
+                            long: lon
+                        }
+                        callback();
+                    }
+                });
+            } catch (error) {
+                console.log('Error: ' + error.message);
+                res.send("Error!")
+            }
+        });
+
+
 
     }, function(err) {
         // if any of the file processing produced an error, err would equal that error
