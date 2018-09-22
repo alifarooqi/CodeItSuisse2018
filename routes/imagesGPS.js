@@ -25,13 +25,12 @@ function findLongitude (coordinates, direction){
 
 router.post('/', function (req, res, next) {
     let hostUrl = url.parse(req.url, true);
-    console.log(hostUrl)
     var images = req.body;
     var output = []
 
     each(images, function(img, callback) {
         try {
-            new ExifImage({ image : "http://cis2018-coordinator-hk.herokuapp.com" + img.path }, function (error, exifData) {
+            new ExifImage({ image : "https://seg-fault.herokuapp.com/imagesGPS" + img.path }, function (error, exifData) {
                 if (error) {
                     console.log('Error: ' + error.message);
                     callback(error.message)
