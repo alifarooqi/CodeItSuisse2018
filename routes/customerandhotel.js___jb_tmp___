@@ -1,20 +1,19 @@
 import { Router } from "express";
 import axios from 'axios'
 var router = Router();
-var radixSortLSD = require("./fasterSort").default
+// var radixSortLSD = require("./fasterSort").default
 
 router.post('/minimum-distance', function (req, res, next) {
     var input = req.body;
     console.log(input);
     // input.sort((a,b)=>{return a-b});
-    radixSortLSD(input)
-    console.log(input)
-    var minimumDifference = input[1]-input[0];
-    for(var i=1 ; i< input.length ; i++)
-    {
-        if(input[i]-input[i-1]<minimumDifference)
-        {
-            minimumDifference = input[i] - input[i-1];
+    // console.log(input)
+    var minimumDifference = Math.abs(input[0]-input[1]);
+    for(var i=0 ; i< input.length-1 ; i++){
+        for (var j=i+1; j<input.length; j++){
+            if(Math.abs(input[i]-input[j])<minimumDifference && i!=j){
+                minimumDifference = Math.abs(input[i]-input[j]);
+            }
         }
     }
 
