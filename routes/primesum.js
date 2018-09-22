@@ -31,7 +31,7 @@ router.post('/', function (req, res, next) {
     if(isPrime(integer))
     {
         outputArray.push(integer);
-        res.end( res.end(JSON.stringify(outputArray)));
+        res.end(JSON.stringify(outputArray));
     }
 
     else
