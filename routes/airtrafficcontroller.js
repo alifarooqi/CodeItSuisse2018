@@ -4,7 +4,7 @@ var router = Router();
 router.post('/', function (req, res, next) {
     var startTime = new Date();
     var flights = req.body['Flights'];
-    console.log("Testcase length:", flights.length)
+    console.log(req.body)
     const reserveTime = parseInt(req.body.Static.ReserveTime)/60;
     const runwayCount = req.body.Static.Runways ? req.body.Static.Runways.length : 1;
 
@@ -61,6 +61,9 @@ router.post('/', function (req, res, next) {
     })
     var totalTime = new Date() - startTime;
     console.log("Time:", totalTime)
+    console.log({
+        "Flights": output
+    })
     res.send(JSON.stringify({
         "Flights": output
     }));
