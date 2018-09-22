@@ -5,7 +5,7 @@ import { exists } from "fs";
 var router = Router();
 
 const isPrime = num => {
-    for(let i = 2; i < num; i++)
+    for(let i = 2; i < num/2; i++)
       if(num % i === 0) return false;
     return num !== 1 && num !== 0;
   }
@@ -13,6 +13,7 @@ const isPrime = num => {
 router.post('/', function (req, res, next) {
 
     var input = req.body['input'];
+
     
     var integer = parseInt(input),
     primeArray = [],
@@ -28,6 +29,17 @@ router.post('/', function (req, res, next) {
     }
 
 
+    
+    
+
+
+    
+
+    
+    
+
+
+
   findArray(integer,(primeArray.length)-1);
    
 
@@ -36,7 +48,7 @@ router.post('/', function (req, res, next) {
        if(total===0)
        {
            res.end(JSON.stringify(outputArray));
-           return outputArray;
+           return;
        }
 
        else if(total<0)
@@ -64,9 +76,10 @@ router.post('/', function (req, res, next) {
        }
 
 
-   }
+   } 
 
    
+
 
 
 
