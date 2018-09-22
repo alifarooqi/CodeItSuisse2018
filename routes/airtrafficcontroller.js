@@ -43,7 +43,7 @@ router.post('/', function (req, res, next) {
         let tmpOutput = {
             PlaneId: flight.PlaneId
         }
-        const currentRunway = (idx)%runwayCount;
+        const currentRunway = (idx+1)%runwayCount;
         if(flight.timeInMins > reservedUntil[currentRunway]){
             tmpOutput.Time = flight.Time;
             reservedUntil[currentRunway] = flight.timeInMins + reserveTime;
