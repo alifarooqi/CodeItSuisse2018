@@ -27,13 +27,16 @@ router.post('/', function (req, res, next) {
         }
     }
 
+
+  findArray(integer,(primeArray.length)-1);
+   
+
    function findArray(total, index)
    {
        if(total===0)
        {
-           
-           outputArrayList.push(outputArray)
-           return;
+           res.end(JSON.stringify(outputArray));
+           return outputArray;
        }
 
        else if(total<0)
@@ -63,8 +66,8 @@ router.post('/', function (req, res, next) {
 
    }
 
-    findArray(integer,(primeArray.length)-1);
-    res.send(JSON.stringify(outputArrayList[0]));
+   
+
 
 
    
