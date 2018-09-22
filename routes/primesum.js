@@ -41,6 +41,7 @@ const isPrime = num => {
 router.post('/', function (req, res, next) {
 
     var input = req.body['input'];
+    var stopfindArray = false;
 
     
     var integer = parseInt(input),
@@ -57,7 +58,7 @@ router.post('/', function (req, res, next) {
             primeArray.push(i);
         }
     }
-
+  
 
 
    /*var total = integer;
@@ -157,20 +158,6 @@ router.post('/', function (req, res, next) {
 
    } 
    
-   
-
-
-
-
-
-   
-
-
-
-
-   
-    
-
 
 });
 
