@@ -10,6 +10,8 @@ router.post('/question-1', function (req, res, next) {
     var input = req.body.input;
     var output = req.body.output;
     var question = req.body.question;
+    console.log(input);
+
 
 
     var a = input;
