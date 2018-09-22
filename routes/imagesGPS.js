@@ -1,9 +1,8 @@
 import { Router } from "express";
-import axios from 'axios'
 var router = Router();
-var url = require('url');
 var ExifImage = require('exif').ExifImage;
 import each from 'async/each';
+var request = require('request').defaults({ encoding: null });
 
 function findLatitude (coordinates, direction){
     var hour = coordinates[0] || 0;
@@ -24,46 +23,50 @@ function findLongitude (coordinates, direction){
 }
 
 router.post('/', function (req, res, next) {
-    let hostUrl = url.parse(req.url, true);
     var images = req.body;
     var output = []
 
     each(images, function(img, callback) {
-        try {
-            new ExifImage({ image : img.path }, function (error, exifData) {
-                if (error) {
-                    console.log('Error: ' + error.message);
-                    callback(error.message)
-                }
-                else {
-                    var lat = findLatitude(exifData.gps["GPSLatitude"], exifData.gps["GPSLatitudeRef"]);
-                    var lon = findLongitude(exifData.gps["GPSLongitude"], exifData.gps["GPSLongitudeRef"]);
-                    console.log(lat, lon); // Do something with your data!
-                    img.location = {
-                        lat: lat,
-                        long: lon
+        request.get(img.path, function (err, response, responseBuffer) {
+            try {
+                new ExifImage({ image : responseBuffer }, function (error, exifData) {
+                    if (error) {
+                        console.log('Error: ' + error.message);
+                        console.log(img.path);
+                        callback(error.message)
                     }
-                    callback();
-                }
-            });
-        } catch (error) {
-            console.log('Error: ' + error.message);
-            res.send("Error!")
-        }
+                    else {
+                        var lat = findLatitude(exifData.gps["GPSLatitude"], exifData.gps["GPSLatitudeRef"]);
+                        var lon = findLongitude(exifData.gps["GPSLongitude"], exifData.gps["GPSLongitudeRef"]);
+                        console.log(lat, lon); // Do something with your data!
+                        img.location = {
+                            lat: lat,
+                            long: lon
+                        }
+                        callback();
+                    }
+                });
+            } catch (error) {
+                console.log('Error: ' + error.message);
+                res.end("Error!\n" + error.message)
+            }
+        });
+
+
 
     }, function(err) {
         // if any of the file processing produced an error, err would equal that error
         if( err ) {
             // One of the iterations produced an error.
             // All processing will now stop.
-            console.log('A file failed to process');
-            res.send("Error!")
+            console.log('An image failed to process');
+            res.end("Error: An image failed to process!\n")
         } else {
             console.log('All files have been processed successfully');
             images.forEach((img, i)=>{
                 output[i] = img.location
             })
-            res.send(JSON.stringify(output));
+            res.end(JSON.stringify(output));
         }
     });
 });
