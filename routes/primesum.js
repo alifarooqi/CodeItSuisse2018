@@ -60,19 +60,62 @@ router.post('/', function (req, res, next) {
 
 
 
+   /*var total = integer;
+    for(var i=primeArray.length-1 ; i>=0 ; i--)
+    {
+        if(total===0)
+        {   
+            console.log(outputArray);
+            res.end(JSON.stringify(outputArray));
+            break;
+        }
+        
+        else if(total<2)
+        {
+            break;
+        }
+        
+        else if(total<primeArray[i])
+        {
+            continue;
+        }
+
+
+
+        else if(total < 0)
+        {  
+            total = integer;
+            continue;
+        }
+
+       
+
+        else
+        {
+            total-= primeArray[i];
+            outputArray.push(primeArray[i]);
+
+        }
+    }
+*/
+
+
 
 
     
 
-   findArray(integer,(primeArray.length)-1);
+    findArray(integer,(primeArray.length)-1);
    
 
-
+ 
   function findArray(total, index)
    {
        if(total===0)
-       {
+       {   
+           
            res.end(JSON.stringify(outputArray));
+           stopfindArray = true;
+           
            return;
        }
 
@@ -87,21 +130,33 @@ router.post('/', function (req, res, next) {
        }
       
        else if(primeArray[index]>total)
-       {
-         findArray(total,index-1);   
+       { 
+         if(stopfindArray===false)
+            findArray(total,index-1);
+         else
+            return;
        }
 
        else
        {   
-           outputArray.push(primeArray[index]);
+           if(stopfindArray === false)
+           {outputArray.push(primeArray[index]);
            findArray(total-primeArray[index],index-1);
+           
            outputArray.pop();
            findArray(total,index-1);
+           }
+
+           else
+           {
+               return;
+           }
         
        }
 
 
    } 
+   
    
 
 
