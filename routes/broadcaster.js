@@ -7,7 +7,7 @@ import { Router } from "express";
 import axios from 'axios'
 var router = Router();
 
-router.post('/', function (req, res, next) {
+router.post('/message-broadcast', function (req, res, next) {
     var input = req.body['data'];
 
     let connected = {}
