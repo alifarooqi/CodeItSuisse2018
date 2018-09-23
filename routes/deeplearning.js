@@ -35,12 +35,13 @@ router.post('/question-1', function (req, res, next) {
 
 router.post('/question-2', function (req, res, next){
     var testSet = req.body.question;
-    console.log(JSON.stringify(testSet[0]))
+    for (var i=0; i<testSet.length; i++){
+        console.log(JSON.stringify(testSet[i]))
+    }
     var output = []
     testSet.forEach((test, idx)=>{
         var result = myNetwork.activate(test)
         var maxIdx = 0
-        console.log(result)
         result.forEach((probability, i)=>{
             if(probability>result[maxIdx])
                 maxIdx = i;
