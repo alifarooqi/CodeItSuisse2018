@@ -45,7 +45,7 @@ router.post('/question-2', function (req, res, next){
             if(probability>result[maxIdx])
                 maxIdx = i;
         })
-        output[idx] = maxIdx+1;
+        output[idx] = maxIdx;
     })
     console.log(output)
     res.send(JSON.stringify({
