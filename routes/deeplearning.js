@@ -48,9 +48,9 @@ router.post('/question-2', function (req, res, next){
         output[idx] = maxIdx;
     })
     console.log(output)
-    res.send(JSON.stringify({
+    res.send({
         answer: output
-    }))
+    })
 })
 
 
