@@ -1,15 +1,9 @@
-let input = {
-    "data" : [ "A->B" , "A->C" , "B->D" , "E->F" ]
-}
-
-
 import { Router } from "express";
 import axios from 'axios'
 var router = Router();
 
 router.post('/message-broadcast', function (req, res, next) {
-    var input = req.body['data'];
-
+    var input = req.body;
     let connected = {}
     let result = []
     input.data.forEach(connection =>{
