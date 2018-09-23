@@ -4,6 +4,8 @@ import { isPrimitive } from "util";
 import { exists } from "fs";
 var math = require('mathjs');
 var router = Router();
+const synaptic = require('synaptic');
+var trainedData = require('../traineddata.json')
 
 
 router.post('/question-1', function (req, res, next) {
@@ -28,6 +30,28 @@ router.post('/question-1', function (req, res, next) {
     console.log(JSON.stringify(jsonans));
     res.send(jsonans);
 });
+
+
+router.post('/question-2', function (req, res, next){
+    var testSet = req.body.question;
+    const myNetwork = synaptic.Network.fromJSON(trainedData);
+
+    var output = []
+    testSet.forEach((test, idx)=>{
+        var result = myNetwork.activate(test)
+        var maxIdx = 0
+        console.log(result)
+        result.forEach((probability, i)=>{
+            if(probability>result[maxIdx])
+                maxIdx = i;
+        })
+        output[idx] = maxIdx+1;
+    })
+    res.send(JSON.stringify({
+        answer: output
+    }))
+})
+
 
 
 export default router;
