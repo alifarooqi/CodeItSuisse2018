@@ -35,6 +35,7 @@ router.post('/question-1', function (req, res, next) {
 
 router.post('/question-2', function (req, res, next){
     var testSet = req.body.question;
+    console.log(JSON.stringify(testSet[0]))
     var output = []
     testSet.forEach((test, idx)=>{
         var result = myNetwork.activate(test)
@@ -46,6 +47,7 @@ router.post('/question-2', function (req, res, next){
         })
         output[idx] = maxIdx+1;
     })
+    console.log(output)
     res.send(JSON.stringify({
         answer: output
     }))
