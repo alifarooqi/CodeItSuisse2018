@@ -36,12 +36,12 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="js" value="4597" />
+          <entry key="js" value="4646" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JavaScript" value="4597" />
+          <entry key="JavaScript" value="4646" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.js.language.service.starts" />
@@ -96,10 +96,11 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/routes/broadcaster.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="5" column="24" selection-start-line="5" selection-start-column="24" selection-end-line="5" selection-end-column="24" />
+            <state relative-caret-position="476">
+              <caret line="57" column="19" selection-start-line="57" selection-start-column="19" selection-end-line="57" selection-end-column="19" />
               <folding>
                 <element signature="e#483#516#0" expanded="true" />
+                <element signature="e#610#713#0" />
               </folding>
             </state>
           </provider>
@@ -318,12 +319,12 @@
       <workItem from="1537580927596" duration="10808000" />
       <workItem from="1537595078641" duration="14219000" />
       <workItem from="1537613542485" duration="10285000" />
-      <workItem from="1537666823284" duration="9149000" />
+      <workItem from="1537666823284" duration="9564000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="44461000" />
+    <option name="totallyTimeSpent" value="44876000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -510,10 +511,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/broadcaster.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="24" selection-start-line="5" selection-start-column="24" selection-end-line="5" selection-end-column="24" />
+        <state relative-caret-position="476">
+          <caret line="57" column="19" selection-start-line="57" selection-start-column="19" selection-end-line="57" selection-end-column="19" />
           <folding>
             <element signature="e#483#516#0" expanded="true" />
+            <element signature="e#610#713#0" />
           </folding>
         </state>
       </provider>
