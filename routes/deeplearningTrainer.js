@@ -2,7 +2,7 @@ const mnist = require('mnist');
 const synaptic = require('synaptic');
 const fs = require('fs');
 
-const set = mnist.set(5000, 0);
+const set = mnist.set(50000, 0);
 
 const trainingSet = set.training;
 const testSet = set.test;
